@@ -35,13 +35,21 @@ class IndexController extends AbstractActionController
      */
     public function getAllUsersAction()
     {
-        $manager = $this->getObjectManager();
-        $users = $manager->getRepository('Application\Entity\User')->findAll();
-        var_dump($users); die;
+        $userRepository = $this->getUserRepository();
+        $users = $userRepository->getAll();
 
         $this->response->setContent(json_encode($users));
 
         return $this->response;
+    }
+
+    public function createUserAction()
+    {
+        $data = $this->getPostData();
+        $user = new \Application\Entity\User();
+        $this->getUserRepository()->createUser($user, $data);
+
+        return new JsonModel(['success' => true]);
     }
 
     /**
@@ -52,5 +60,20 @@ class IndexController extends AbstractActionController
         return $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
+    }
+
+    /**
+     * @return \Application\Repository\Users
+     */
+    protected function getUserRepository()
+    {
+        $manager = $this->getObjectManager();
+        /** @var \Application\Repository\Users $users */
+        return $manager->getRepository('Application\Entity\User');
+    }
+
+    private function getPostData()
+    {
+        return json_decode(file_get_contents("php://input"));
     }
 }

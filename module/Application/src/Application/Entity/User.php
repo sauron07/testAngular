@@ -11,7 +11,7 @@ namespace Application\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Application\Repository\Users")
  * @ORM\Table(name="users")
  */
 class User {
@@ -27,6 +27,28 @@ class User {
      * @ORM\Column(type="string", name="full_name")
      */
     protected $fullName;
+
+    /**
+     * @var int
+     * @ORM\Column(type="integer")
+     */
+    protected $blocked = 0;
+
+    /**
+     * @param int $blocked
+     */
+    public function setBlocked($blocked)
+    {
+        $this->blocked = $blocked;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBlocked()
+    {
+        return $this->blocked;
+    }
 
     /**
      * @param mixed $fullName

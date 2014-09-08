@@ -43,6 +43,16 @@ return array(
                     ]
                 ]
             ],
+            'create-user' => [
+                'type' => 'Literal',
+                'options' => [
+                    'route' => '/create-user',
+                    'defaults' => [
+                        'controller' => 'Application\Controller\Index',
+                        'action' => 'create-user'
+                    ]
+                ]
+            ],
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them

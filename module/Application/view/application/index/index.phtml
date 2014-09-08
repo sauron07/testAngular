@@ -1,5 +1,22 @@
 <div class="jumbotron">
-    <ul>
-        <li ng-repeat="user in json">{{user.login}}</li>
-    </ul>
+    <form name="myForm" ng-submit="submit()" class="form-inline">
+        <input class="input-small" type="text" name="fullName" ng-model="user.fullName">
+        <input type="submit" class="btn" value="Create User">
+    </form>
+    <table class="table table-bordered">
+        <tr>
+            <td>userId <input ng-model="search.id"></td>
+            <td>fullName <input ng-model="search.fullName"></td>
+            <td>blocked <input ng-model="search.blocked"></td>
+            <td>action</td>
+        </tr>
+        <tr ng-repeat="user in users | filter:search">
+            <td>{{user.id}}</td>
+            <td>{{user.fullName}}</td>
+            <td>{{user.blocked}}</td>
+            <td>
+                <a class="btn btn-large btn-danger"><i class="icon-ok"></i>Remove</a>
+            </td>
+        </tr>
+    </table>
 </div>
