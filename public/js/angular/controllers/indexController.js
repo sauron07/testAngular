@@ -7,7 +7,7 @@ zendApplication.controller('indexController', ['$scope', '$http',
             $scope.users = data;
         });
 
-        $scope.submit = function() {
+        $scope.create = function() {
             $http({
                 url: '/create-user',
                 method: 'POST',
@@ -16,12 +16,44 @@ zendApplication.controller('indexController', ['$scope', '$http',
                 },
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
-                .success(function(data, status) {
-//                    alert('User "' + $scope.user.fullName + '"   added success')
+                .success(function() {
+                    $http.get('get-all-users').success(function (data) {
+                        $scope.users = data;
+                    });
                 })
-                .error(function(data, status) {
-                });
         };
+
+        $scope.remove = function(id){
+            $http({
+                url: '/remove-user',
+                method: 'POST',
+                data: {
+                    id: id
+                },
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).success(function(){
+                $http.get('get-all-users').success(function (data) {
+                    $scope.users = data;
+                });
+            });
+        };
+
+        $scope.save = function(newUser, user){
+            $http({
+                url: '/update-user',
+                method: 'POST',
+                data: {
+                    id: user.id,
+                    fullName: newUser.fullName ? newUser.fullName  : user.fullName,
+                    blocked: newUser.blocked ? newUser.blocked : user.blocked
+                },
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).success(function(){
+                $http.get('get-all-users').success(function (data) {
+                    $scope.users = data;
+                });
+            });
+        }
 
     }]);
 

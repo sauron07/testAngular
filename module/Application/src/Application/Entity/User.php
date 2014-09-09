@@ -37,7 +37,7 @@ class User {
     /**
      * @param int $blocked
      */
-    public function setBlocked($blocked)
+    public function setBlocked($blocked = 0)
     {
         $this->blocked = $blocked;
     }

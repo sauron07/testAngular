@@ -52,13 +52,37 @@ class IndexController extends AbstractActionController
         return new JsonModel(['success' => true]);
     }
 
+    public function removeUserAction()
+    {
+        $data = $this->getPostData();
+        $user = $this->getUserRepository()->findOneBy(['id' => $data->id]);
+        $em = $this->getObjectManager();
+        $em->remove($user);
+        $em->flush();
+
+        return new JsonModel(['success' => true]);
+    }
+
+    public function updateUserAction()
+    {
+        $data = $this->getPostData();
+        /** @var \Application\Entity\User $user */
+        $user = $this->getUserRepository()->findOneBy(['id' => $data->id]);
+        $user->setFullName($data->fullName);
+        $user->setBlocked($data->blocked);
+        $em = $this->getObjectManager();
+        $em->persist($user);
+        $em->flush();
+
+        return new JsonModel(['success' => true]);
+    }
+
     /**
      * @return \Doctrine\ORM\EntityManager
      */
     protected function getObjectManager()
     {
-        return $objectManager = $this
-            ->getServiceLocator()
+        return $this->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
     }
 
@@ -67,9 +91,7 @@ class IndexController extends AbstractActionController
      */
     protected function getUserRepository()
     {
-        $manager = $this->getObjectManager();
-        /** @var \Application\Repository\Users $users */
-        return $manager->getRepository('Application\Entity\User');
+        return $this->getObjectManager()->getRepository('Application\Entity\User');
     }
 
     private function getPostData()

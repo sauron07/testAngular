@@ -53,6 +53,26 @@ return array(
                     ]
                 ]
             ],
+            'remove-user' => [
+                'type' => 'Literal',
+                'options' => [
+                    'route' => '/remove-user',
+                    'defaults' => [
+                        'controller' => 'Application\Controller\Index',
+                        'action' => 'remove-user'
+                    ]
+                ]
+            ],
+            'update-user' => [
+                'type' => 'Literal',
+                'options' => [
+                    'route' => '/update-user',
+                    'defaults' => [
+                        'controller' => 'Application\Controller\Index',
+                        'action' => 'update-user'
+                    ]
+                ]
+            ],
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
