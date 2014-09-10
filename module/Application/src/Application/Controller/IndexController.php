@@ -69,6 +69,7 @@ class IndexController extends AbstractActionController
         /** @var \Application\Entity\User $user */
         $user = $this->getUserRepository()->findOneBy(['id' => $data->id]);
         $user->setFullName($data->fullName);
+        $user->setIq($data->iq);
         $user->setBlocked($data->blocked);
         $em = $this->getObjectManager();
         $em->persist($user);

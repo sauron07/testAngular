@@ -25,7 +25,8 @@ class Users extends EntityRepository
 
     public function createUser(User $user, $data)
     {
-        $user->setFullName($data->fullName);
+        $user->setFullName($data->user->fullName);
+        $user->setIq($data->user->iq);
         $this->_em->persist($user);
         $this->_em->flush();
     }

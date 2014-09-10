@@ -20,7 +20,7 @@ controllers.controller('indexController', ['$scope', '$http',
                 url: '/create-user',
                 method: 'POST',
                 data: {
-                    fullName: $scope.user.fullName
+                    user: $scope.user
                 },
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
@@ -52,7 +52,8 @@ controllers.controller('indexController', ['$scope', '$http',
                 method: 'POST',
                 data: {
                     id: user.id,
-                    fullName: newUser.fullName ? newUser.fullName  : user.fullName,
+                    fullName: newUser.fullName ? newUser.fullName : user.fullName,
+                    iq: newUser.iq ? newUser.iq : user.iq,
                     blocked: newUser.blocked ? newUser.blocked : user.blocked
                 },
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}

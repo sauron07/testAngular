@@ -2,12 +2,14 @@
 
     <form name="myForm" ng-submit="create()">
         FullName: <input class="input-small" type="text" name="fullName" ng-model="user.fullName">
+        IQ: <input class="input-small" type="text" name="IQ" ng-model="user.iq">
         <input type="submit" class="btn" value="Create User">
     </form>
     <table class="table table-bordered">
         <tr>
             <td>userId <input ng-model="search.id"></td>
             <td>fullName <input ng-model="search.fullName"></td>
+            <td>IQ <input ng-model="search.iq"></td>
             <td>blocked <input ng-model="search.blocked"></td>
             <td>action</td>
         </tr>
@@ -16,6 +18,10 @@
             <td>
                 {{user.fullName}}<br/>
                 <input ng-show="edit" ng-model="newUser.fullName" placeholder="{{user.fullName}}">
+            </td>
+            <td>
+                {{user.iq}}<br/>
+                <input ng-show="edit" ng-model="newUser.iq" placeholder="{{user.iq}}">
             </td>
             <td>
                 {{user.blocked | checkmark}} <br/>

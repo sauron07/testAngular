@@ -35,6 +35,27 @@ class User {
     protected $blocked = 0;
 
     /**
+     * @var int
+     * @ORM\Column(type="integer")
+     */
+    protected $iq;
+
+    /**
+     * @param int $iq
+     */
+    public function setIq($iq)
+    {
+        $this->iq = $iq;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIq()
+    {
+        return $this->iq;
+    }
+    /**
      * @param int $blocked
      */
     public function setBlocked($blocked = 0)
