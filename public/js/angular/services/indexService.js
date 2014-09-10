@@ -5,14 +5,6 @@
 
 /* Services */
 
-var indexService = angular.module('indexService', ['ngResource']);
+var services = angular.module('services');
 
-indexService.factory('User', ['$resource',
-    function($resource){
-        return $resource('get-all-users', {}, {
-            query: {
-                method:'GET',
-                isArray:true
-            }
-        });
-    }]);
+services.factory('User',function(){console.log('service')});

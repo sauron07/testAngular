@@ -10,6 +10,8 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.2.23"
+    "angular": "~1.2.23",
+    "angular-resource": "latest",
+    "angular-route": "latest"
   }
 }

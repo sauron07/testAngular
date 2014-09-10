@@ -1,7 +1,15 @@
 'use strict';
-var zendApplication = angular.module('zendApplication', []);
+var controllers = angular.module('controllers', []);
 
-zendApplication.controller('indexController', ['$scope', '$http',
+controllers.controller('loginController', ['$scope', function($scope){
+    $scope.credentials = {email: '', password: '', remember: ''};
+
+    $scope.login = function (){
+        console.table($scope.credentials);
+    }
+}]);
+
+controllers.controller('indexController', ['$scope', '$http',
     function ($scope, $http) {
         $http.get('get-all-users').success(function (data) {
             $scope.users = data;

@@ -1,31 +1,3 @@
 <div>
-
-    <form name="myForm" ng-submit="create()">
-        FullName: <input class="input-small" type="text" name="fullName" ng-model="user.fullName">
-        <input type="submit" class="btn" value="Create User">
-    </form>
-    <table class="table table-bordered">
-        <tr>
-            <td>userId <input ng-model="search.id"></td>
-            <td>fullName <input ng-model="search.fullName"></td>
-            <td>blocked <input ng-model="search.blocked"></td>
-            <td>action</td>
-        </tr>
-        <tr ng-repeat="user in users | filter:search">
-            <td> {{user.id}}</td>
-            <td>
-                {{user.fullName}}<br/>
-                <input ng-show="edit" ng-model="newUser.fullName" placeholder="{{user.fullName}}">
-            </td>
-            <td>
-                {{user.blocked}} <br/>
-                <input type="checkbox" ng-show="edit" value="{{user.blocked}}" ng-model="newUser.blocked" placeholder="{{user.blocked}}">
-            </td>
-            <td>
-                <a class="btn btn-mini btn-success" ng-click="edit = !edit" ng-init="edit=false" ng-hide="edit">Edit </a>
-                <a class="btn btn-mini btn-warning" ng-click="save(newUser, user)" ng-if="edit">Save</a>
-                <a class="btn btn-mini btn-danger" ng-click="remove(user.id)">Remove</a>
-            </td>
-        </tr>
-    </table>
+    <ng-view />
 </div>
