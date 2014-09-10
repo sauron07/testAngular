@@ -1,5 +1,4 @@
 <div>
-
     <form name="myForm" ng-submit="create()">
         FullName: <input class="input-small" type="text" name="fullName" ng-model="user.fullName">
         IQ: <input class="input-small" type="text" name="IQ" ng-model="user.iq">
@@ -19,9 +18,11 @@
                 {{user.fullName}}<br/>
                 <input ng-show="edit" ng-model="newUser.fullName" placeholder="{{user.fullName}}">
             </td>
-            <td>
-                {{user.iq}}<br/>
-                <input ng-show="edit" ng-model="newUser.iq" placeholder="{{user.iq}}">
+            <td  ng-mouseenter="show = !show" ng-mouseleave="show = !show">
+                <p>
+                {{user.iq}}</p><br/>
+                <button class="btn btn-mini btn-primary" type="button" ng-show="show">Show diagram</button>
+                <input ng-show="edit" ng-model="newUser.iq" placeholder="{{user.iq}}"></span>
             </td>
             <td>
                 {{user.blocked | checkmark}} <br/>
@@ -35,3 +36,4 @@
         </tr>
     </table>
 </div>
+

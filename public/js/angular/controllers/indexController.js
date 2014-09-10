@@ -11,6 +11,7 @@ controllers.controller('loginController', ['$scope', function($scope){
 
 controllers.controller('indexController', ['$scope', '$http',
     function ($scope, $http) {
+        $scope.show = false;
         $http.get('get-all-users').success(function (data) {
             $scope.users = data;
         });
